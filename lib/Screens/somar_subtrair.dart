@@ -1,15 +1,15 @@
 // ignore_for_file: unused_local_variable, non_constant_identifier_names
-import 'package:calculo_vetores/my_colors.dart';
+import 'package:calculo_vetores/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 
-class Tab2 extends StatefulWidget {
-  const Tab2({super.key});
+class Tab1 extends StatefulWidget {
+  const Tab1({super.key});
 
   @override
-  State<Tab2> createState() => _Tab2State();
+  State<Tab1> createState() => _Tab1State();
 }
 
-class _Tab2State extends State<Tab2> {
+class _Tab1State extends State<Tab1> {
   TextEditingController AXController = TextEditingController();
   TextEditingController AYController = TextEditingController();
   TextEditingController AZController = TextEditingController();
@@ -42,9 +42,6 @@ class _Tab2State extends State<Tab2> {
       double.parse(CYController.text),
       double.parse(CZController.text)
     ]);
-    print(vetA.toString());
-    print(vetB.toString());
-    print(vetC.toString());
 
     for (int i = 0; i < 3; i++) {
       result.add([
@@ -55,9 +52,7 @@ class _Tab2State extends State<Tab2> {
         vetC[i] - vetA[i],
         vetA[i] - vetC[i]
       ]);
-      print('vetA[i]-vetB[i] ${vetA[i] - vetB[i]}');
     }
-    print('resultado -> ${result.toString()}');
 
     setState(() {
       result;
@@ -80,9 +75,6 @@ class _Tab2State extends State<Tab2> {
       double.parse(CYController.text),
       double.parse(CZController.text)
     ]);
-    print(vetA.toString());
-    print(vetB.toString());
-    print(vetC.toString());
 
     for (int i = 0; i < 3; i++) {
       result.add([
@@ -108,7 +100,6 @@ class _Tab2State extends State<Tab2> {
   @override
   Widget build(BuildContext context) {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
     return SingleChildScrollView(
       child: Center(
         child: Column(

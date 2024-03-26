@@ -1,5 +1,6 @@
-import 'package:calculo_vetores/Screens/views.dart';
-import 'package:calculo_vetores/my_colors.dart';
+import 'package:calculo_vetores/Screens/escalar.dart';
+import 'package:calculo_vetores/Screens/somar_subtrair.dart';
+import 'package:calculo_vetores/styles/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -77,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Simples',
                 ),
                 Tab(
-                  icon: Icon(Icons.looks_3_rounded),
+                  icon: Icon(Icons.looks_two_rounded),
                   text: 'Escalar',
                 ),
                 Tab(
@@ -85,17 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Módulo',
                 ),
                 Tab(
-                  icon: Icon(Icons.looks_3_rounded),
+                  icon: Icon(Icons.looks_4_rounded),
                   text: 'Ângulo',
                 ),
               ]),
         ),
         body: const TabBarView(
           children: [
-            Tab2(),
-            Tab2(),
-            Tab2(),
-            Tab2(),
+            Tab1(),
+            Escalar(),
+            Tab1(),
+            Tab1(),
           ],
         ),
       ),
