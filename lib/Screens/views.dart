@@ -2,222 +2,6 @@
 import 'package:calculo_vetores/my_colors.dart';
 import 'package:flutter/material.dart';
 
-class Tab1 extends StatefulWidget {
-  const Tab1({super.key});
-
-  @override
-  State<Tab1> createState() => _Tab1State();
-}
-
-class _Tab1State extends State<Tab1> {
-  TextEditingController number1Controller = TextEditingController();
-  TextEditingController number2Controller = TextEditingController();
-  TextEditingController number3Controller = TextEditingController();
-
-  double result = 0;
-  void soma() {
-    double number1 = double.parse(number1Controller.text);
-    double number2 = double.parse(number2Controller.text);
-    double number3 = double.parse(number3Controller.text);
-    setState(() {
-      result = number1 + number2 + number3;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 50),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _textField(
-                      'Vetor A',
-                      Icons.numbers,
-                      number1Controller,
-                      obscure: false,
-                      type: TextInputType.number,
-                    ),
-                    const SizedBox(height: 10),
-                    _textField(
-                      'Vetor B',
-                      Icons.numbers,
-                      number2Controller,
-                      obscure: false,
-                      type: TextInputType.number,
-                    ),
-                    const SizedBox(height: 10),
-                    _textField(
-                      'Vetor C',
-                      Icons.numbers,
-                      number3Controller,
-                      obscure: false,
-                      type: TextInputType.number,
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 40,
-                          decoration: const BoxDecoration(
-                              color: MyColors.primary,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: TextButton.icon(
-                              onPressed: () {
-                                if (formKey.currentState!.validate()) {
-                                  soma();
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.search_rounded,
-                                color: MyColors.white,
-                              ),
-                              label: const Text(
-                                'Calcular',
-                                style: TextStyle(color: MyColors.white),
-                              )),
-                        ),
-                        const SizedBox(width: 25),
-                        Container(
-                            height: 40,
-                            width: 164,
-                            decoration: const BoxDecoration(
-                                color: MyColors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                border: Border(
-                                  bottom: BorderSide(color: MyColors.black),
-                                  top: BorderSide(color: MyColors.black),
-                                  left: BorderSide(color: MyColors.black),
-                                  right: BorderSide(color: MyColors.black),
-                                )),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                result.toString(),
-                                style: const TextStyle(
-                                  color: MyColors.primary,
-                                  fontSize: 18,
-                                ),
-                                overflow: TextOverflow.clip,
-                                textAlign: TextAlign.center,
-                              ),
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Form(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _textField(
-                      'Vetor A',
-                      Icons.numbers,
-                      number1Controller,
-                      obscure: false,
-                      type: TextInputType.number,
-                    ),
-                    const SizedBox(height: 10),
-                    _textField(
-                      'Vetor B',
-                      Icons.numbers,
-                      number2Controller,
-                      obscure: false,
-                      type: TextInputType.number,
-                    ),
-                    const SizedBox(height: 10),
-                    _textField(
-                      'Vetor C',
-                      Icons.numbers,
-                      number3Controller,
-                      obscure: false,
-                      type: TextInputType.number,
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 40,
-                          decoration: const BoxDecoration(
-                              color: MyColors.primary,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: TextButton.icon(
-                              onPressed: () {
-                                if (formKey.currentState!.validate()) {
-                                  soma();
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.search_rounded,
-                                color: MyColors.white,
-                              ),
-                              label: const Text(
-                                'Calcular',
-                                style: TextStyle(color: MyColors.white),
-                              )),
-                        ),
-                        const SizedBox(width: 25),
-                        Container(
-                            height: 40,
-                            width: 164,
-                            decoration: const BoxDecoration(
-                                color: MyColors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                border: Border(
-                                  bottom: BorderSide(color: MyColors.black),
-                                  top: BorderSide(color: MyColors.black),
-                                  left: BorderSide(color: MyColors.black),
-                                  right: BorderSide(color: MyColors.black),
-                                )),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                result.toString(),
-                                style: const TextStyle(
-                                  color: MyColors.primary,
-                                  fontSize: 18,
-                                ),
-                                overflow: TextOverflow.clip,
-                                textAlign: TextAlign.center,
-                              ),
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class Tab2 extends StatefulWidget {
   const Tab2({super.key});
@@ -263,13 +47,13 @@ class _Tab2State extends State<Tab2> {
     print(vetC.toString());
 
     for (int i = 0; i < 3; i++) {
-      result.addAll([
-        [vetA[i] - vetB[i]],
-        [vetB[i] - vetA[i]],
-        [vetB[i] - vetC[i]],
-        [vetC[i] - vetB[i]],
-        [vetC[i] - vetA[i]],
-        [vetA[i] - vetC[i]]
+      result.add([
+        vetA[i] - vetB[i],
+        vetB[i] - vetA[i],
+        vetB[i] - vetC[i],
+        vetC[i] - vetB[i],
+        vetC[i] - vetA[i],
+        vetA[i] - vetC[i]
       ]);
       print('vetA[i]-vetB[i] ${vetA[i] - vetB[i]}');
     }
@@ -287,7 +71,6 @@ class _Tab2State extends State<Tab2> {
 
   @override
   Widget build(BuildContext context) {
-    bool exibir = false;
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
     return SingleChildScrollView(
@@ -392,10 +175,12 @@ class _Tab2State extends State<Tab2> {
                                   vetA.clear();
                                   vetB.clear();
                                   vetC.clear();
-                                  result.map((element) {element.clear();});
+                                  result.map((element) {
+                                    element.clear();
+                                  });
                                   result.clear();
                                   subtracao();
-                                  exibir = true;
+                                 
                                 }
                               },
                               icon: const Icon(
@@ -407,43 +192,51 @@ class _Tab2State extends State<Tab2> {
                                 style: TextStyle(color: MyColors.white),
                               )),
                         ),
-                        // Container(
-                        //     height: 40,
-                        //     width: 164,
-                        //     decoration: const BoxDecoration(
-                        //         color: MyColors.white,
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(10)),
-                        //         border: Border(
-                        //           bottom: BorderSide(color: MyColors.black),
-                        //           top: BorderSide(color: MyColors.black),
-                        //           left: BorderSide(color: MyColors.black),
-                        //           right: BorderSide(color: MyColors.black),
-                        //         )),
-                        //     child: Padding(
-                        //       padding: const EdgeInsets.all(5.0),
-                        //       child: Text(
-                        //         result.toString(),
-                        //         style: const TextStyle(
-                        //           color: MyColors.primary,
-                        //           fontSize: 18,
-                        //         ),
-                        //         overflow: TextOverflow.clip,
-                        //         textAlign: TextAlign.center,
-                        //       ),
-                        //     )),
                       ],
                     ),
-                    Visibility(
-                        visible: exibir,
-                        child: Wrap(
-                          children: [
-                           
-  
-                          
-                          ]
-                          
-                        ))
+                    result.isNotEmpty
+                        ? Wrap(runSpacing: 10, spacing: 5, children: [
+                            Text("Vetor A.x - Vetor B.x = ${result[0][0]}",
+                                style: style),
+                            Text("Vetor B.x - Vetor A.x = ${result[0][1]}",
+                                style: style),
+                            Text("Vetor B.x - Vetor C.x = ${result[0][2]}",
+                                style: style),
+                            Text("Vetor C.x - Vetor B.x = ${result[0][3]}",
+                                style: style),
+                            Text("Vetor C.x - Vetor A.x = ${result[0][4]}",
+                                style: style),
+                            Text("Vetor A.x - Vetor C.x = ${result[0][5]}",
+                                style: style),
+                            const SizedBox(height: 10),
+                            Text("Vetor A.y - Vetor B.y = ${result[1][0]}",
+                                style: style),
+                            Text("Vetor B.y - Vetor A.y = ${result[1][1]}",
+                                style: style),
+                            Text("Vetor B.y - Vetor C.y = ${result[1][2]}",
+                                style: style),
+                            Text("Vetor C.y - Vetor B.y = ${result[1][3]}",
+                                style: style),
+                            Text("Vetor C.y - Vetor A.y = ${result[1][4]}",
+                                style: style),
+                            Text("Vetor A.y - Vetor C.y = ${result[1][5]}",
+                                style: style),
+                            const SizedBox(height: 10),
+                            Text("Vetor A.z - Vetor B.z = ${result[2][0]}",
+                                style: style),
+                            Text("Vetor B.z - Vetor A.z = ${result[2][1]}",
+                                style: style),
+                            Text("Vetor B.z - Vetor C.z = ${result[2][2]}",
+                                style: style),
+                            Text("Vetor C.z - Vetor B.z = ${result[2][3]}",
+                                style: style),
+                            Text("Vetor C.z - Vetor A.z = ${result[2][4]}",
+                                style: style),
+                            Text("Vetor A.z - Vetor C.z = ${result[2][5]}",
+                                style: style),
+                            const SizedBox(height: 10),
+                          ])
+                        : const SizedBox()
                   ],
                 ),
               ),
@@ -462,6 +255,8 @@ Widget _titulo(String label, Color cor) {
     style: TextStyle(color: cor, fontSize: 22, overflow: TextOverflow.clip),
   );
 }
+
+TextStyle style = const TextStyle(color: MyColors.black, fontSize: 16);
 
 Widget _textField(String label, IconData icon, TextEditingController controller,
     {TextInputType? type, bool obscure = false}) {

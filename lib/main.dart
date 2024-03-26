@@ -93,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
         body: const TabBarView(
           children: [
             Tab2(),
-            Tab1(),
-            Tab1(),
-            Tab1(),
+            Tab2(),
+            Tab2(),
+            Tab2(),
           ],
         ),
       ),
