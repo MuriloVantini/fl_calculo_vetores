@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: 3,
+      length: 4,
       animationDuration: const Duration(milliseconds: 500),
       child: Scaffold(
         backgroundColor: MyColors.white,
@@ -74,20 +74,25 @@ class _MyHomePageState extends State<MyHomePage> {
               tabs: <Widget>[
                 Tab(
                   icon: Icon(Icons.looks_one_rounded),
-                  text: 'Cálculo 1',
-                ),
-                Tab(
-                  icon: Icon(Icons.looks_two_rounded),
-                  text: 'Cálculo 2',
+                  text: 'Simples',
                 ),
                 Tab(
                   icon: Icon(Icons.looks_3_rounded),
-                  text: 'Cálculo 3',
+                  text: 'Escalar',
+                ),
+                Tab(
+                  icon: Icon(Icons.looks_3_rounded),
+                  text: 'Módulo',
+                ),
+                Tab(
+                  icon: Icon(Icons.looks_3_rounded),
+                  text: 'Ângulo',
                 ),
               ]),
         ),
         body: const TabBarView(
           children: [
+            Tab2(),
             Tab1(),
             Tab1(),
             Tab1(),
