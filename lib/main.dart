@@ -1,4 +1,4 @@
-import 'package:calculo_vetores/Screens/escalar.dart';
+import 'package:calculo_vetores/Screens/escalares.dart';
 import 'package:calculo_vetores/Screens/somar_subtrair.dart';
 import 'package:calculo_vetores/styles/my_colors.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Tab(
                   icon: Icon(Icons.looks_3_rounded),
-                  text: 'Módulo',
+                  text: 'Produto',
                 ),
                 Tab(
                   icon: Icon(Icons.looks_4_rounded),
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Tab1(),
             Escalar(),
-            Tab1(),
+            ProdutoEscalar(),
             Tab1(),
           ],
         ),
