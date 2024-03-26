@@ -23,12 +23,11 @@ class _AnguloState extends State<Angulo> {
   TextEditingController CYController = TextEditingController();
   TextEditingController CZController = TextEditingController();
 
-  final result = <List<double>>[];
   final listResultAngulo = <List<num>>[];
   final vetA = <double>[];
+  final modulo = <double>[];
   final vetB = <double>[];
   final vetC = <double>[];
-  String sinal = "";
   num? resultAngulo,
       angulo,
       prodEscalar,
@@ -59,17 +58,19 @@ class _AnguloState extends State<Angulo> {
       double.parse(CZController.text)
     ]);
 
-    prodEscalar = (vetA[0] * vetB[0]) + (vetA[1] * vetB[1]) + (vetA[2] * vetB[2]);
-        modulo1 = sqrt(pow(vetA[0], 2) + pow(vetA[1], 2) + pow(vetA[2], 2));
-        modulo2 = sqrt(pow(vetB[0], 2) + pow(vetB[1], 2) + pow(vetB[2], 2));
-        resultAngulo =  acos(prodEscalar! / (modulo1! * modulo2!));
-        cosAngulo = 180 * resultAngulo! / 3.14;
+    prodEscalar =
+        (vetA[0] * vetB[0]) + (vetA[1] * vetB[1]) + (vetA[2] * vetB[2]);
+    modulo1 = sqrt(pow(vetA[0], 2) + pow(vetA[1], 2) + pow(vetA[2], 2));
+    modulo2 = sqrt(pow(vetB[0], 2) + pow(vetB[1], 2) + pow(vetB[2], 2));
+    resultAngulo = acos(prodEscalar! / (modulo1! * modulo2!));
+    cosAngulo = 180 * resultAngulo! / 3.14;
 
-      prodEscalar2 = (vetB[0] * vetC[0]) + (vetB[1] * vetC[1]) + (vetB[2] * vetC[2]);
-        modulo3 = sqrt(pow(vetB[0], 2) + pow(vetB[1], 2) + pow(vetB[2], 2));
-        modulo4 = sqrt(pow(vetC[0], 2) + pow(vetC[1], 2) + pow(vetC[2], 2));
-        resultAngulo2 = acos(prodEscalar2! / (modulo3! * modulo4!));
-        cosAngulo2 = 180 * resultAngulo2! / 3.14;
+    prodEscalar2 =
+        (vetB[0] * vetC[0]) + (vetB[1] * vetC[1]) + (vetB[2] * vetC[2]);
+    modulo3 = sqrt(pow(vetB[0], 2) + pow(vetB[1], 2) + pow(vetB[2], 2));
+    modulo4 = sqrt(pow(vetC[0], 2) + pow(vetC[1], 2) + pow(vetC[2], 2));
+    resultAngulo2 = acos(prodEscalar2! / (modulo3! * modulo4!));
+    cosAngulo2 = 180 * resultAngulo2! / 3.14;
 
     listResultAngulo.add([cosAngulo!, cosAngulo2!]);
     setState(() {
@@ -77,7 +78,7 @@ class _AnguloState extends State<Angulo> {
     });
   }
 
-  void modulo() {
+  void moduloFunc() {
     vetA.addAll([
       double.parse(AXController.text),
       double.parse(AYController.text),
@@ -94,18 +95,14 @@ class _AnguloState extends State<Angulo> {
       double.parse(CZController.text)
     ]);
 
-    for (int i = 0; i < 3; i++) {
-      result.add([
-        vetA[i] + vetB[i],
-        vetB[i] + vetA[i],
-        vetB[i] + vetC[i],
-        vetC[i] + vetB[i],
-        vetC[i] + vetA[i],
-        vetA[i] + vetC[i]
-      ]);
-    }
+    modulo.addAll([
+      sqrt(pow(vetA[0], 2) + pow(vetA[1], 2) + pow(vetA[2], 2)),
+      sqrt(pow(vetB[0], 2) + pow(vetB[1], 2) + pow(vetB[2], 2)),
+      sqrt(pow(vetC[0], 2) + pow(vetC[1], 2) + pow(vetC[2], 2))
+    ]);
+
     setState(() {
-      result;
+      modulo;
     });
   }
 
@@ -219,12 +216,12 @@ class _AnguloState extends State<Angulo> {
                                   vetA.clear();
                                   vetB.clear();
                                   vetC.clear();
-                                  result.map((element) {
+                                  listResultAngulo.map((element) {
                                     element.clear();
                                   });
-                                  result.clear();
-
-                                  sinal = "+";
+                                  listResultAngulo.clear();
+                                  modulo.clear();
+                                  moduloFunc();
                                 }
                               },
                               icon: const Icon(
@@ -253,6 +250,7 @@ class _AnguloState extends State<Angulo> {
                                     element.clear();
                                   });
                                   listResultAngulo.clear();
+                                  modulo.clear();
                                   anguloFunc();
                                 }
                               },
@@ -272,11 +270,23 @@ class _AnguloState extends State<Angulo> {
                         ? Wrap(runSpacing: 10, spacing: 5, children: [
                             Text("Ângulo 1: ${listResultAngulo[0][0]}",
                                 style: style),
-                                Text("Ângulo 2: ${listResultAngulo[0][1]}",
+                            Text("Ângulo 2: ${listResultAngulo[0][1]}",
                                 style: style),
                             const SizedBox(height: 10),
                           ])
-                        : const SizedBox()
+                        : modulo.isNotEmpty
+                            ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Módulo de A: ${modulo[0]}",
+                                      style: style),
+                                  Text("Módulo de B: ${modulo[1]}",
+                                      style: style),
+                                  Text("Módulo de C: ${modulo[2]}",
+                                      style: style),
+                                ],
+                              )
+                            : const SizedBox()
                   ],
                 ),
               ),
