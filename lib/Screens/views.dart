@@ -2,7 +2,6 @@
 import 'package:calculo_vetores/my_colors.dart';
 import 'package:flutter/material.dart';
 
-
 class Tab2 extends StatefulWidget {
   const Tab2({super.key});
 
@@ -25,6 +24,7 @@ class _Tab2State extends State<Tab2> {
   final vetA = <double>[];
   final vetB = <double>[];
   final vetC = <double>[];
+  String sinal = "";
 
   void subtracao() {
     vetA.addAll([
@@ -64,6 +64,42 @@ class _Tab2State extends State<Tab2> {
     });
   }
 
+  void soma() {
+    vetA.addAll([
+      double.parse(AXController.text),
+      double.parse(AYController.text),
+      double.parse(AZController.text)
+    ]);
+    vetB.addAll([
+      double.parse(BXController.text),
+      double.parse(BYController.text),
+      double.parse(BZController.text)
+    ]);
+    vetC.addAll([
+      double.parse(CXController.text),
+      double.parse(CYController.text),
+      double.parse(CZController.text)
+    ]);
+    print(vetA.toString());
+    print(vetB.toString());
+    print(vetC.toString());
+
+    for (int i = 0; i < 3; i++) {
+      result.add([
+        vetA[i] + vetB[i],
+        vetB[i] + vetA[i],
+        vetB[i] + vetC[i],
+        vetC[i] + vetB[i],
+        vetC[i] + vetA[i],
+        vetA[i] + vetC[i]
+      ]);
+    }
+
+    setState(() {
+      result;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -86,7 +122,7 @@ class _Tab2State extends State<Tab2> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _titulo("Subtração", Colors.black),
+                    _titulo("Calcular", Colors.black),
                     const SizedBox(height: 10),
                     Wrap(
                       runSpacing: 10,
@@ -179,8 +215,8 @@ class _Tab2State extends State<Tab2> {
                                     element.clear();
                                   });
                                   result.clear();
-                                  subtracao();
-                                 
+                                  soma();
+                                  sinal = "+";
                                 }
                               },
                               icon: const Icon(
@@ -188,51 +224,82 @@ class _Tab2State extends State<Tab2> {
                                 color: MyColors.white,
                               ),
                               label: const Text(
-                                'Calcular',
+                                'Somar',
+                                style: TextStyle(color: MyColors.white),
+                              )),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          height: 40,
+                          decoration: const BoxDecoration(
+                              color: MyColors.primary,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: TextButton.icon(
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  vetA.clear();
+                                  vetB.clear();
+                                  vetC.clear();
+                                  result.map((element) {
+                                    element.clear();
+                                  });
+                                  result.clear();
+                                  subtracao();
+                                  sinal = "-";
+                                }
+                              },
+                              icon: const Icon(
+                                Icons.search_rounded,
+                                color: MyColors.white,
+                              ),
+                              label: const Text(
+                                'Subtrair',
                                 style: TextStyle(color: MyColors.white),
                               )),
                         ),
                       ],
                     ),
+                    const SizedBox(height: 10),
                     result.isNotEmpty
                         ? Wrap(runSpacing: 10, spacing: 5, children: [
-                            Text("Vetor A.x - Vetor B.x = ${result[0][0]}",
+                            Text("Vetor A.x $sinal Vetor B.x = ${result[0][0]}",
                                 style: style),
-                            Text("Vetor B.x - Vetor A.x = ${result[0][1]}",
+                            Text("Vetor B.x $sinal Vetor A.x = ${result[0][1]}",
                                 style: style),
-                            Text("Vetor B.x - Vetor C.x = ${result[0][2]}",
+                            Text("Vetor B.x $sinal Vetor C.x = ${result[0][2]}",
                                 style: style),
-                            Text("Vetor C.x - Vetor B.x = ${result[0][3]}",
+                            Text("Vetor C.x $sinal Vetor B.x = ${result[0][3]}",
                                 style: style),
-                            Text("Vetor C.x - Vetor A.x = ${result[0][4]}",
+                            Text("Vetor C.x $sinal Vetor A.x = ${result[0][4]}",
                                 style: style),
-                            Text("Vetor A.x - Vetor C.x = ${result[0][5]}",
-                                style: style),
-                            const SizedBox(height: 10),
-                            Text("Vetor A.y - Vetor B.y = ${result[1][0]}",
-                                style: style),
-                            Text("Vetor B.y - Vetor A.y = ${result[1][1]}",
-                                style: style),
-                            Text("Vetor B.y - Vetor C.y = ${result[1][2]}",
-                                style: style),
-                            Text("Vetor C.y - Vetor B.y = ${result[1][3]}",
-                                style: style),
-                            Text("Vetor C.y - Vetor A.y = ${result[1][4]}",
-                                style: style),
-                            Text("Vetor A.y - Vetor C.y = ${result[1][5]}",
+                            Text("Vetor A.x $sinal Vetor C.x = ${result[0][5]}",
                                 style: style),
                             const SizedBox(height: 10),
-                            Text("Vetor A.z - Vetor B.z = ${result[2][0]}",
+                            Text("Vetor A.y $sinal Vetor B.y = ${result[1][0]}",
                                 style: style),
-                            Text("Vetor B.z - Vetor A.z = ${result[2][1]}",
+                            Text("Vetor B.y $sinal Vetor A.y = ${result[1][1]}",
                                 style: style),
-                            Text("Vetor B.z - Vetor C.z = ${result[2][2]}",
+                            Text("Vetor B.y $sinal Vetor C.y = ${result[1][2]}",
                                 style: style),
-                            Text("Vetor C.z - Vetor B.z = ${result[2][3]}",
+                            Text("Vetor C.y $sinal Vetor B.y = ${result[1][3]}",
                                 style: style),
-                            Text("Vetor C.z - Vetor A.z = ${result[2][4]}",
+                            Text("Vetor C.y $sinal Vetor A.y = ${result[1][4]}",
                                 style: style),
-                            Text("Vetor A.z - Vetor C.z = ${result[2][5]}",
+                            Text("Vetor A.y $sinal Vetor C.y = ${result[1][5]}",
+                                style: style),
+                            const SizedBox(height: 10),
+                            Text("Vetor A.z $sinal Vetor B.z = ${result[2][0]}",
+                                style: style),
+                            Text("Vetor B.z $sinal Vetor A.z = ${result[2][1]}",
+                                style: style),
+                            Text("Vetor B.z $sinal Vetor C.z = ${result[2][2]}",
+                                style: style),
+                            Text("Vetor C.z $sinal Vetor B.z = ${result[2][3]}",
+                                style: style),
+                            Text("Vetor C.z $sinal Vetor A.z = ${result[2][4]}",
+                                style: style),
+                            Text("Vetor A.z $sinal Vetor C.z = ${result[2][5]}",
                                 style: style),
                             const SizedBox(height: 10),
                           ])
