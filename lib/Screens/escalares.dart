@@ -313,7 +313,6 @@ class _ProdutoEscalarState extends State<ProdutoEscalar> {
       (vetB[0] * vetB[0]) + (vetB[1] * vetB[1]) + (vetB[2] * vetB[2]),
       (vetC[0] * vetC[0]) + (vetC[1] * vetC[1]) + (vetC[2] * vetC[2])
     ]);
-    print(result.toString());
   }
 
   @override

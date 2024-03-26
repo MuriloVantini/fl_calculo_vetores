@@ -1,3 +1,4 @@
+import 'package:calculo_vetores/Screens/angulo.dart';
 import 'package:calculo_vetores/Screens/escalares.dart';
 import 'package:calculo_vetores/Screens/somar_subtrair.dart';
 import 'package:calculo_vetores/styles/my_colors.dart';
@@ -96,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Tab1(),
             Escalar(),
             ProdutoEscalar(),
-            Tab1(),
+            Angulo(),
           ],
         ),
       ),
